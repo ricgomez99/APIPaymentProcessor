@@ -3,10 +3,6 @@ import { PaymentService } from './payment.service';
 import { Payment } from './interfaces/payment.interface';
 
 const mockPayment = {} as Payment;
-const mockRespone = {
-  status: 'CREATED',
-  data: {},
-};
 
 class mockPaymentModel {
   constructor(private _: any) {}
@@ -38,6 +34,6 @@ describe('Payment Service', () => {
 
   it('should create a payment', async () => {
     const result = await paymentService.create(mockPayment);
-    expect(result).toEqual(mockRespone);
+    expect(result).toEqual(mockPayment);
   });
 });

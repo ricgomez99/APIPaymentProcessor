@@ -1,23 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { paymentHeader } from '../lib/paymentHeader';
 
 @Injectable()
 export class PaymentService {
   async create(createDto: CreatePaymentDto) {
     try {
-      console.log('headers: ', paymentHeader(process.env.KEY));
-      const result = await axios.post(
+      const { data } = await axios.post(
         `${process.env.BASE_URL}/tokens/cards`,
         createDto,
         paymentHeader(process.env.KEY),
       );
-      console.log(result);
-      return result;
+
+      return data;
     } catch (error) {
-      if (error) {
-        console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+
+      if (error instanceof AxiosError) {
+        console.log(error.response.data);
       }
     }
   }

@@ -31,8 +31,8 @@ describe('Payment Controller', () => {
         },
       ],
     }).compile();
-    paymentController = moduleRef.get<PaymentController>(PaymentController);
     paymentService = moduleRef.get<PaymentService>(PaymentService);
+    paymentController = moduleRef.get<PaymentController>(PaymentController);
   });
 
   afterEach(() => {

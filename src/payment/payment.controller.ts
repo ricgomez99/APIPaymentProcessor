@@ -9,7 +9,8 @@ export class PaymentController {
   @Post()
   async create(@Body() createDto: CreatePaymentDto) {
     try {
-      await this.paymentService.create(createDto);
+      const result = await this.paymentService.create(createDto);
+      return result;
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
