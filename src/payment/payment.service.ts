@@ -9,7 +9,7 @@ export class PaymentService {
     try {
       console.log('headers: ', paymentHeader(process.env.KEY));
       const result = await axios.post(
-        `${process.env.BASE_URL}/token/cards`,
+        `${process.env.BASE_URL}/tokens/cards`,
         createDto,
         paymentHeader(process.env.KEY),
       );
